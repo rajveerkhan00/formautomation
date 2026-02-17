@@ -10,4 +10,4 @@ jobs:
     steps:
       - name: Call Vercel Cron Endpoint
         run: |
-          curl -X GET "https://formautomation.vercel.app/api/cron/process-emails"
+          curl -X GET "https://formautomation-4brq.vercel.app/api/cron/process-emails"
