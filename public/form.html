@@ -1,0 +1,1137 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weight Loss Consultation</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Custom styles for progress bar gradient */
+        .progress-gradient {
+            background: linear-gradient(to right, #ef4444 0%, #22c55e 50%, #e5e7eb 50%, #e5e7eb 100%);
+        }
+    </style>
+</head>
+
+<body class="bg-gray-900 min-h-screen flex items-center justify-center p-4">
+
+    <!-- Modal Container -->
+    <div class="bg-white rounded-2xl shadow-2xl w-full max-w-2xl relative">
+
+        <!-- Header -->
+        <div class="flex items-center justify-between p-6 border-b">
+            <div class="flex items-center gap-3">
+                <!-- Logo -->
+                <img src="https://res.cloudinary.com/duqljgqkh/image/upload/v1771254183/h3xqebv3bnnn6mm3qw4z.webp"
+                    alt="Verbest Logo" class="h-8">
+                <h1 class="text-xl font-bold text-gray-900">Weight Loss Consultation</h1>
+            </div>
+
+            <!-- Close Button -->
+            <button onclick="closeModal()" class="text-gray-400 hover:text-gray-600 transition-colors">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                </svg>
+            </button>
+        </div>
+
+        <!-- Progress Section -->
+        <div class="px-6 pt-4 pb-2">
+            <div class="flex items-center justify-between mb-2">
+                <div class="flex items-center gap-2">
+                    <svg class="w-5 h-5 text-red-600" fill="currentColor" viewBox="0 0 20 20">
+                        <path fill-rule="evenodd"
+                            d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                            clip-rule="evenodd" />
+                    </svg>
+                    <span class="text-red-600 font-semibold text-sm">Free Consultation</span>
+                </div>
+                <span class="text-green-600 font-semibold text-sm">20% Complete</span>
+            </div>
+
+            <!-- Progress Bar -->
+            <div class="w-full h-2 bg-gray-200 rounded-full overflow-hidden">
+                <div class="h-full bg-gradient-to-r from-red-500 to-green-500 rounded-full transition-all duration-500"
+                    style="width: 20%"></div>
+            </div>
+        </div>
+
+        <!-- Content -->
+        <div class="p-6">
+
+            <!-- STEP 1: Personal Information -->
+            <div id="step1" class="step-content">
+                <!-- Title Section -->
+                <div class="text-center mb-6">
+                    <div class="flex items-center justify-center gap-2 mb-2">
+                        <svg class="w-8 h-8 text-yellow-500" fill="currentColor" viewBox="0 0 20 20">
+                            <path
+                                d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                        </svg>
+                        <h2 class="text-2xl font-bold text-gray-900">FREE Medical Consultation</h2>
+                    </div>
+                    <p class="text-gray-600 text-sm">Join thousands who've transformed with Dr. Htoo</p>
+                </div>
+
+                <!-- Form Step 1 -->
+                <div class="space-y-4">
+                    <!-- Name Fields -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <!-- First Name -->
+                        <div>
+                            <label for="firstName" class="block text-sm font-semibold text-gray-900 mb-2">
+                                First Name <span class="text-red-600">*</span>
+                            </label>
+                            <input type="text" id="firstName" name="firstName" placeholder="Enter your first name"
+                                maxlength="40" pattern="[A-Za-z\s]+" required
+                                oninput="validateName(this, 'firstNameError')"
+                                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent outline-none transition-all">
+                            <p id="firstNameError" class="text-xs text-red-600 mt-1 hidden"></p>
+                            <p id="firstNameCount" class="text-xs text-gray-500 mt-1">0/40 characters</p>
+                        </div>
+
+                        <!-- Last Name -->
+                        <div>
+                            <label for="lastName" class="block text-sm font-semibold text-gray-900 mb-2">
+                                Last Name <span class="text-red-600">*</span>
+                            </label>
+                            <input type="text" id="lastName" name="lastName" placeholder="Enter your last name"
+                                maxlength="40" pattern="[A-Za-z\s]+" required
+                                oninput="validateName(this, 'lastNameError')"
+                                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent outline-none transition-all">
+                            <p id="lastNameError" class="text-xs text-red-600 mt-1 hidden"></p>
+                            <p id="lastNameCount" class="text-xs text-gray-500 mt-1">0/40 characters</p>
+                        </div>
+                    </div>
+
+                    <!-- Second Row: Email and Phone -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <!-- Email Address -->
+                        <div>
+                            <label for="email" class="block text-sm font-semibold text-gray-900 mb-2">
+                                Email Address <span class="text-red-600">*</span>
+                            </label>
+                            <input type="email" id="email" name="email" placeholder="your.email@gmail.com" required
+                                pattern="[a-zA-Z0-9._%+-]+@gmail\.com" oninput="validateEmail(this)"
+                                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent outline-none transition-all">
+                            <p id="emailError" class="text-xs text-red-600 mt-1 hidden"></p>
+                            <p class="text-xs text-gray-500 mt-1">Must be a Gmail address (@gmail.com)</p>
+                        </div>
+
+                        <!-- Phone Number -->
+                        <div>
+                            <label for="phone" class="block text-sm font-semibold text-gray-900 mb-2">
+                                Phone Number <span class="text-red-600">*</span>
+                            </label>
+                            <div class="flex">
+                                <input type="tel" id="phone" name="phone" placeholder="(305) 123-4567" required
+                                    oninput="validatePhone(this)"
+                                    class="flex-1 px-4 py-3 border border-gray-300 rounded-l-lg focus:ring-2 focus:ring-red-500 focus:border-transparent outline-none transition-all border-r-0">
+                                <select id="countryCode" name="countryCode" onchange="updatePhoneValidation()"
+                                    class="w-10 px-3 py-3 border border-gray-300 rounded-r-lg focus:ring-2 focus:ring-red-500 focus:border-transparent outline-none transition-all bg-gray-50 text-sm font-medium z-10">
+                                    <!-- Options will be populated by JS -->
+                                </select>
+                            </div>
+                            <p id="phoneError" class="text-xs text-red-600 mt-1 hidden"></p>
+                            <p id="phoneFormat" class="text-xs text-gray-500 mt-1">Format: (XXX) XXX-XXXX (10 digits)
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Navigation Buttons -->
+                    <div class="flex justify-end pt-4">
+                        <button type="button" onclick="nextStep()"
+                            class="bg-red-600 hover:bg-red-700 text-white font-semibold px-8 py-3 rounded-lg flex items-center gap-2 transition-all transform hover:scale-105 shadow-lg">
+                            Next Step
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- STEP 2: Health Assessment -->
+            <div id="step2" class="step-content hidden">
+                <!-- Title Section -->
+                <div class="text-center mb-6">
+                    <div class="flex items-center justify-center gap-2 mb-2">
+                        <svg class="w-8 h-8 text-yellow-600" fill="currentColor" viewBox="0 0 20 20">
+                            <path
+                                d="M13.586 3.586a2 2 0 112.828 2.828l-.793.793-2.828-2.828.793-.793zM11.379 5.793L3 14.172V17h2.828l8.38-8.379-2.83-2.828z" />
+                        </svg>
+                        <h2 class="text-2xl font-bold text-gray-900">Quick Health Assessment</h2>
+                    </div>
+                    <p class="text-gray-600 text-sm">Help us understand your starting point</p>
+                </div>
+
+                <!-- Health Form -->
+                <div class="space-y-5">
+                    <!-- Height Input -->
+                    <div>
+                        <label for="height" class="block text-sm font-semibold text-gray-900 mb-2">
+                            Height <span class="text-red-600">*</span>
+                        </label>
+                        <div class="flex gap-2">
+                            <input type="text" id="height" name="height" placeholder="e.g., 5'10 or 178" required
+                                oninput="calculateBMI()"
+                                class="flex-1 px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent outline-none transition-all">
+                            <div class="flex items-center gap-3 bg-gray-50 px-4 rounded-lg">
+                                <label class="flex items-center gap-2 cursor-pointer">
+                                    <input type="radio" name="heightUnit" value="ft/in"
+                                        class="w-4 h-4 text-red-600 focus:ring-red-500">
+                                    <span class="text-sm font-medium text-gray-700">ft/in</span>
+                                </label>
+                                <label class="flex items-center gap-2 cursor-pointer">
+                                    <input type="radio" name="heightUnit" value="cm"
+                                        class="w-4 h-4 text-red-600 focus:ring-red-500">
+                                    <span class="text-sm font-medium text-gray-700">cm</span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Weight Input -->
+                    <div>
+                        <label for="weight" class="block text-sm font-semibold text-gray-900 mb-2">
+                            Weight <span class="text-red-600">*</span>
+                        </label>
+                        <div class="flex gap-2">
+                            <input type="number" id="weight" name="weight" placeholder="Enter your weight" required
+                                oninput="calculateBMI()"
+                                class="flex-1 px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent outline-none transition-all">
+                            <div class="flex items-center gap-3 bg-gray-50 px-4 rounded-lg">
+                                <label class="flex items-center gap-2 cursor-pointer">
+                                    <input type="radio" name="weightUnit" value="lbs"
+                                        class="w-4 h-4 text-red-600 focus:ring-red-500">
+                                    <span class="text-sm font-medium text-gray-700">lbs</span>
+                                </label>
+                                <label class="flex items-center gap-2 cursor-pointer">
+                                    <input type="radio" name="weightUnit" value="kg"
+                                        class="w-4 h-4 text-red-600 focus:ring-red-500">
+                                    <span class="text-sm font-medium text-gray-700">kg</span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- BMI Display -->
+                    <div id="bmiDisplay" class="bg-red-50 border border-red-100 rounded-lg p-6 text-center hidden">
+                        <p class="text-sm text-gray-600 mb-2">Your BMI</p>
+                        <p id="bmiValue" class="text-5xl font-bold text-red-600 mb-1">-</p>
+                        <p id="bmiStatus" class="text-sm font-semibold text-green-600">-</p>
+                    </div>
+
+                    <!-- Navigation Buttons -->
+                    <div class="flex justify-between pt-4">
+                        <button type="button" onclick="previousStep()"
+                            class="bg-white hover:bg-gray-50 text-gray-700 font-semibold px-8 py-3 rounded-lg flex items-center gap-2 transition-all border border-gray-300">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M11 17l-5-5m0 0l5-5m-5 5h12" />
+                            </svg>
+                            Previous
+                        </button>
+
+                        <button type="button" onclick="nextStep()"
+                            class="bg-red-600 hover:bg-red-700 text-white font-semibold px-8 py-3 rounded-lg flex items-center gap-2 transition-all transform hover:scale-105 shadow-lg">
+                            Next Step
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- STEP 3: Your Goals -->
+            <div id="step3" class="step-content hidden">
+                <!-- Title Section -->
+                <div class="text-center mb-6">
+                    <div class="flex items-center justify-center gap-2 mb-2">
+                        <svg class="w-8 h-8 text-red-600" fill="currentColor" viewBox="0 0 20 20">
+                            <path
+                                d="M10 2a6 6 0 00-6 6v3.586l-.707.707A1 1 0 004 14h12a1 1 0 00.707-1.707L16 11.586V8a6 6 0 00-6-6zM10 18a3 3 0 01-3-3h6a3 3 0 01-3 3z" />
+                        </svg>
+                        <h2 class="text-2xl font-bold text-gray-900">Your Goals</h2>
+                    </div>
+                </div>
+
+                <!-- Goals Form -->
+                <div class="space-y-6">
+                    <!-- Primary Goals -->
+                    <div>
+                        <label class="block text-sm font-semibold text-gray-900 mb-3">
+                            Primary goals? (Select all that apply)
+                        </label>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+                            <label class="flex items-center gap-3 cursor-pointer">
+                                <input type="checkbox" name="primaryGoals" value="lose10-20"
+                                    class="w-5 h-5 text-red-600 rounded focus:ring-red-500 border-gray-300">
+                                <span class="text-sm text-gray-700">Lose 10-20 lbs</span>
+                            </label>
+                            <label class="flex items-center gap-3 cursor-pointer">
+                                <input type="checkbox" name="primaryGoals" value="lose20-50"
+                                    class="w-5 h-5 text-red-600 rounded focus:ring-red-500 border-gray-300">
+                                <span class="text-sm text-gray-700">Lose 20-50 lbs</span>
+                            </label>
+                            <label class="flex items-center gap-3 cursor-pointer">
+                                <input type="checkbox" name="primaryGoals" value="lose50+"
+                                    class="w-5 h-5 text-red-600 rounded focus:ring-red-500 border-gray-300">
+                                <span class="text-sm text-gray-700">Lose 50+ lbs</span>
+                            </label>
+                            <label class="flex items-center gap-3 cursor-pointer">
+                                <input type="checkbox" name="primaryGoals" value="improveDiabetes"
+                                    class="w-5 h-5 text-red-600 rounded focus:ring-red-500 border-gray-300">
+                                <span class="text-sm text-gray-700">Improve diabetes</span>
+                            </label>
+                            <label class="flex items-center gap-3 cursor-pointer">
+                                <input type="checkbox" name="primaryGoals" value="lowerBloodPressure"
+                                    class="w-5 h-5 text-red-600 rounded focus:ring-red-500 border-gray-300">
+                                <span class="text-sm text-gray-700">Lower blood pressure</span>
+                            </label>
+                            <label class="flex items-center gap-3 cursor-pointer">
+                                <input type="checkbox" name="primaryGoals" value="reduceCholesterol"
+                                    class="w-5 h-5 text-red-600 rounded focus:ring-red-500 border-gray-300">
+                                <span class="text-sm text-gray-700">Reduce cholesterol</span>
+                            </label>
+                            <label class="flex items-center gap-3 cursor-pointer">
+                                <input type="checkbox" name="primaryGoals" value="increaseEnergy"
+                                    class="w-5 h-5 text-red-600 rounded focus:ring-red-500 border-gray-300">
+                                <span class="text-sm text-gray-700">Increase energy</span>
+                            </label>
+                            <label class="flex items-center gap-3 cursor-pointer">
+                                <input type="checkbox" name="primaryGoals" value="betterSleep"
+                                    class="w-5 h-5 text-red-600 rounded focus:ring-red-500 border-gray-300">
+                                <span class="text-sm text-gray-700">Better sleep</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Health Concerns -->
+                    <div>
+                        <label class="block text-sm font-semibold text-gray-900 mb-3">
+                            Health concerns? (Select all that apply)
+                        </label>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+                            <label class="flex items-center gap-3 cursor-pointer">
+                                <input type="checkbox" name="healthConcerns" value="type2Diabetes"
+                                    class="w-5 h-5 text-red-600 rounded focus:ring-red-500 border-gray-300">
+                                <span class="text-sm text-gray-700">Type 2 Diabetes</span>
+                            </label>
+                            <label class="flex items-center gap-3 cursor-pointer">
+                                <input type="checkbox" name="healthConcerns" value="highBloodPressure"
+                                    class="w-5 h-5 text-red-600 rounded focus:ring-red-500 border-gray-300">
+                                <span class="text-sm text-gray-700">High Blood Pressure</span>
+                            </label>
+                            <label class="flex items-center gap-3 cursor-pointer">
+                                <input type="checkbox" name="healthConcerns" value="highCholesterol"
+                                    class="w-5 h-5 text-red-600 rounded focus:ring-red-500 border-gray-300">
+                                <span class="text-sm text-gray-700">High Cholesterol</span>
+                            </label>
+                            <label class="flex items-center gap-3 cursor-pointer">
+                                <input type="checkbox" name="healthConcerns" value="sleepApnea"
+                                    class="w-5 h-5 text-red-600 rounded focus:ring-red-500 border-gray-300">
+                                <span class="text-sm text-gray-700">Sleep Apnea</span>
+                            </label>
+                            <label class="flex items-center gap-3 cursor-pointer">
+                                <input type="checkbox" name="healthConcerns" value="jointPain"
+                                    class="w-5 h-5 text-red-600 rounded focus:ring-red-500 border-gray-300">
+                                <span class="text-sm text-gray-700">Joint Pain</span>
+                            </label>
+                            <label class="flex items-center gap-3 cursor-pointer">
+                                <input type="checkbox" name="healthConcerns" value="fatigue"
+                                    class="w-5 h-5 text-red-600 rounded focus:ring-red-500 border-gray-300">
+                                <span class="text-sm text-gray-700">Fatigue</span>
+                            </label>
+                            <label class="flex items-center gap-3 cursor-pointer">
+                                <input type="checkbox" name="healthConcerns" value="emotionalEating"
+                                    class="w-5 h-5 text-red-600 rounded focus:ring-red-500 border-gray-300">
+                                <span class="text-sm text-gray-700">Emotional Eating</span>
+                            </label>
+                            <label class="flex items-center gap-3 cursor-pointer">
+                                <input type="checkbox" name="healthConcerns" value="none"
+                                    class="w-5 h-5 text-red-600 rounded focus:ring-red-500 border-gray-300">
+                                <span class="text-sm text-gray-700">None of the above</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Previous Weight Loss Attempts -->
+                    <div>
+                        <label class="block text-sm font-semibold text-gray-900 mb-3">
+                            Previous weight loss attempts?
+                        </label>
+                        <div class="space-y-3">
+                            <label class="flex items-center gap-3 cursor-pointer">
+                                <input type="radio" name="weightLossAttempts" value="neverTried"
+                                    class="w-5 h-5 text-red-600 focus:ring-red-500 border-gray-300">
+                                <span class="text-sm text-gray-700">Never tried</span>
+                            </label>
+                            <label class="flex items-center gap-3 cursor-pointer">
+                                <input type="radio" name="weightLossAttempts" value="someSuccess"
+                                    class="w-5 h-5 text-red-600 focus:ring-red-500 border-gray-300">
+                                <span class="text-sm text-gray-700">Yes, with some success</span>
+                            </label>
+                            <label class="flex items-center gap-3 cursor-pointer">
+                                <input type="radio" name="weightLossAttempts" value="noLastingResults"
+                                    class="w-5 h-5 text-red-600 focus:ring-red-500 border-gray-300">
+                                <span class="text-sm text-gray-700">Yes, but no lasting results</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Navigation Buttons -->
+                    <div class="flex justify-between pt-4">
+                        <button type="button" onclick="previousStep()"
+                            class="bg-white hover:bg-gray-50 text-gray-700 font-semibold px-8 py-3 rounded-lg flex items-center gap-2 transition-all border border-gray-300">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M11 17l-5-5m0 0l5-5m-5 5h12" />
+                            </svg>
+                            Previous
+                        </button>
+
+                        <button type="button" onclick="nextStep()"
+                            class="bg-red-600 hover:bg-red-700 text-white font-semibold px-8 py-3 rounded-lg flex items-center gap-2 transition-all transform hover:scale-105 shadow-lg">
+                            Next Step
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- STEP 4: Consultation Preferences -->
+            <div id="step4" class="step-content hidden">
+                <!-- Title Section -->
+                <div class="text-center mb-8">
+                    <div class="flex items-center justify-center mb-4">
+                        <div class="w-20 h-20 bg-red-50 rounded-2xl flex items-center justify-center">
+                            <svg class="w-10 h-10 text-red-600" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd"
+                                    d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z"
+                                    clip-rule="evenodd" />
+                            </svg>
+                        </div>
+                    </div>
+                    <h2 class="text-3xl font-bold text-gray-900 mb-2">Consultation Preferences</h2>
+                    <p class="text-gray-600">Let's schedule your free consoltation</p>
+                </div>
+
+                <!-- Preferences Form -->
+                <div class="space-y-8">
+                    <!-- Preferred Consultation Type -->
+                    <div>
+                        <label class="block text-base font-semibold text-gray-900 mb-4">
+                            Preferred consultation type
+                        </label>
+                        <div class="space-y-3">
+                            <label
+                                class="flex items-start gap-4 p-4 border-2 border-gray-200 rounded-xl cursor-pointer hover:border-red-300 transition-all has-[:checked]:border-red-600 has-[:checked]:bg-red-50">
+                                <input type="radio" name="consultationType" value="inPerson"
+                                    class="w-5 h-5 text-red-600 focus:ring-red-500 border-gray-300 mt-0.5">
+                                <div class="flex-1">
+                                    <div class="font-semibold text-gray-900 mb-1">In-Person Consultation</div>
+                                    <div class="text-sm text-gray-600">Visit our Miami Beach office for a comprehensive
+                                        evaluation</div>
+                                </div>
+                            </label>
+
+                            <label
+                                class="flex items-start gap-4 p-4 border-2 border-gray-200 rounded-xl cursor-pointer hover:border-red-300 transition-all has-[:checked]:border-red-600 has-[:checked]:bg-red-50">
+                                <input type="radio" name="consultationType" value="virtual"
+                                    class="w-5 h-5 text-red-600 focus:ring-red-500 border-gray-300 mt-0.5">
+                                <div class="flex-1">
+                                    <div class="font-semibold text-gray-900 mb-1">Virtual Consultation</div>
+                                    <div class="text-sm text-gray-600">Meet with our physician via secure video call
+                                    </div>
+                                </div>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Preferred Time -->
+                    <div>
+                        <label class="block text-base font-semibold text-gray-900 mb-4">
+                            Preferred time for your consultation
+                        </label>
+                        <div class="space-y-3">
+                            <label class="flex items-center gap-3 cursor-pointer">
+                                <input type="radio" name="preferredTime" value="morning"
+                                    class="w-5 h-5 text-red-600 focus:ring-red-500 border-gray-300">
+                                <span class="text-base text-gray-700">Morning (8am - 12pm)</span>
+                            </label>
+
+                            <label class="flex items-center gap-3 cursor-pointer">
+                                <input type="radio" name="preferredTime" value="afternoon"
+                                    class="w-5 h-5 text-red-600 focus:ring-red-500 border-gray-300">
+                                <span class="text-base text-gray-700">Afternoon (12pm - 5pm)</span>
+                            </label>
+
+                            <label class="flex items-center gap-3 cursor-pointer">
+                                <input type="radio" name="preferredTime" value="evening"
+                                    class="w-5 h-5 text-red-600 focus:ring-red-500 border-gray-300">
+                                <span class="text-base text-gray-700">Evening (5pm - 8pm)</span>
+                            </label>
+
+                            <label class="flex items-center gap-3 cursor-pointer">
+                                <input type="radio" name="preferredTime" value="weekend"
+                                    class="w-5 h-5 text-red-600 focus:ring-red-500 border-gray-300">
+                                <span class="text-base text-gray-700">Weekend availability preferred</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Navigation Buttons -->
+                    <div class="flex justify-between pt-4">
+                        <button type="button" onclick="previousStep()"
+                            class="bg-white hover:bg-gray-50 text-gray-700 font-semibold px-8 py-3 rounded-lg flex items-center gap-2 transition-all border border-gray-300">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M11 17l-5-5m0 0l5-5m-5 5h12" />
+                            </svg>
+                            Previous
+                        </button>
+
+                        <button type="button" onclick="nextStep()"
+                            class="bg-red-600 hover:bg-red-700 text-white font-semibold px-8 py-3 rounded-lg flex items-center gap-2 transition-all transform hover:scale-105 shadow-lg">
+                            Next Step
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- STEP 5: Completion -->
+            <div id="step5" class="step-content hidden">
+                <!-- Title Section -->
+                <div class="text-center mb-8">
+                    <div class="flex items-center justify-center gap-2 mb-3">
+                        <span class="text-4xl">🎉</span>
+                        <h2 class="text-3xl font-bold text-gray-900">You're Almost Done!</h2>
+                    </div>
+                    <p class="text-gray-600">Dr. Htoo will review your assessment and contact you within 24 hours</p>
+                </div>
+
+                <!-- Summary Cards -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+                    <!-- BMI Card -->
+                    <div class="bg-red-50 border border-red-100 rounded-xl p-6 text-center">
+                        <p class="text-sm text-gray-600 mb-2">Your BMI</p>
+                        <p id="finalBmiValue" class="text-5xl font-bold text-red-600 mb-1">11.7</p>
+                        <p id="finalBmiStatus" class="text-sm font-semibold text-red-600">Underweight</p>
+                    </div>
+
+                    <!-- GLP-1 Eligibility Card -->
+                    <div class="bg-blue-50 border border-blue-100 rounded-xl p-6 text-center">
+                        <p class="text-sm text-gray-600 mb-2">GLP-1 Eligible</p>
+                        <p class="text-4xl font-bold text-gray-700 mb-1">MAYBE</p>
+                        <p class="text-sm font-semibold text-gray-600">We'll discuss options</p>
+                    </div>
+                </div>
+
+                <!-- Consultation Includes -->
+                <div class="bg-green-50 border border-green-200 rounded-xl p-6 mb-6">
+                    <h3 class="text-center font-bold text-gray-900 mb-4 text-lg">Your FREE Consultation Includes:</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+                        <div class="flex items-center gap-3">
+                            <svg class="w-5 h-5 text-green-600 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd"
+                                    d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                                    clip-rule="evenodd" />
+                            </svg>
+                            <span class="text-gray-700">Health assessment</span>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <svg class="w-5 h-5 text-green-600 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd"
+                                    d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                                    clip-rule="evenodd" />
+                            </svg>
+                            <span class="text-gray-700">Weight loss plan</span>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <svg class="w-5 h-5 text-green-600 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd"
+                                    d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                                    clip-rule="evenodd" />
+                            </svg>
+                            <span class="text-gray-700">GLP-1 evaluation</span>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <svg class="w-5 h-5 text-green-600 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd"
+                                    d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                                    clip-rule="evenodd" />
+                            </svg>
+                            <span class="text-gray-700">Treatment options</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Navigation Buttons -->
+                <div class="flex justify-between pt-4">
+                    <button type="button" onclick="previousStep()"
+                        class="bg-white hover:bg-gray-50 text-gray-700 font-semibold px-8 py-3 rounded-lg flex items-center gap-2 transition-all border border-gray-300">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M11 17l-5-5m0 0l5-5m-5 5h12" />
+                        </svg>
+                        Previous
+                    </button>
+
+                    <button type="button" onclick="submitForm()"
+                        class="bg-green-600 hover:bg-green-700 text-white font-semibold px-8 py-3 rounded-lg flex items-center gap-2 transition-all transform hover:scale-105 shadow-lg">
+                        Book My Free Consultation
+                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd"
+                                d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                                clip-rule="evenodd" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+
+            <!-- STEP 6: Thank You -->
+            <div id="step6" class="step-content hidden">
+                <!-- Success Icon -->
+                <div class="flex justify-center mb-6">
+                    <div class="w-24 h-24 bg-green-100 rounded-2xl flex items-center justify-center">
+                        <svg class="w-14 h-14 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                        </svg>
+                    </div>
+                </div>
+
+                <!-- Title Section -->
+                <div class="text-center mb-8">
+                    <div class="flex items-center justify-center gap-2 mb-3">
+                        <span class="text-3xl">🎉</span>
+                        <h2 class="text-3xl font-bold text-gray-900">Thank You! We'll Call You Soon</h2>
+                    </div>
+                    <p class="text-gray-600">Our team will contact you within 24 hours to schedule your consultation.
+                    </p>
+                </div>
+
+                <!-- What Happens Next -->
+                <div class="bg-green-50 border border-green-200 rounded-xl p-6 mb-6">
+                    <h3 class="text-center font-bold text-gray-900 mb-5 text-lg">What Happens Next?</h3>
+                    <div class="space-y-4">
+                        <div class="flex items-center gap-3">
+                            <svg class="w-6 h-6 text-green-600 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd"
+                                    d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                                    clip-rule="evenodd" />
+                            </svg>
+                            <span class="text-gray-700">We review your assessment</span>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <svg class="w-6 h-6 text-green-600 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd"
+                                    d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                                    clip-rule="evenodd" />
+                            </svg>
+                            <span class="text-gray-700">We call to schedule consultation</span>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <svg class="w-6 h-6 text-green-600 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd"
+                                    d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                                    clip-rule="evenodd" />
+                            </svg>
+                            <span class="text-gray-700">Meet with Dr. Htoo</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Contact Information -->
+                <div class="bg-red-50 border border-red-200 rounded-xl p-6 mb-6 text-center">
+                    <h3 class="font-bold text-gray-900 mb-2 text-lg">Questions? Call Us Now</h3>
+                    <a href="tel:3053442378"
+                        class="text-3xl font-bold text-red-600 hover:text-red-700 transition-colors">
+                        305.344.BEST (2378)
+                    </a>
+                </div>
+
+                <!-- Navigation Buttons -->
+                <div class="flex justify-between pt-4">
+                    <button type="button" onclick="previousStep()"
+                        class="bg-white hover:bg-gray-50 text-gray-700 font-semibold px-8 py-3 rounded-lg flex items-center gap-2 transition-all border border-gray-300">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M11 17l-5-5m0 0l5-5m-5 5h12" />
+                        </svg>
+                        Previous
+                    </button>
+
+                    <button type="button" onclick="closeModal()"
+                        class="bg-red-600 hover:bg-red-700 text-white font-semibold px-8 py-3 rounded-lg flex items-center gap-2 transition-all transform hover:scale-105 shadow-lg">
+                        Close
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M6 18L18 6M6 6l12 12" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- Firebase SDK Compat (Easier for static HTML) -->
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore-compat.js"></script>
+
+    <script>
+        // Firebase configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyDg7OY_4DbI2Irh6zmez4lWfafa12OlrBc",
+            authDomain: "formsdata-a63b0.firebaseapp.com",
+            projectId: "formsdata-a63b0",
+            storageBucket: "formsdata-a63b0.firebasestorage.app",
+            messagingSenderId: "167954523375",
+            appId: "1:167954523375:web:7ec58360b08c61401aa71a"
+        };
+
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+        const db = firebase.firestore();
+
+        // Track current step
+        let currentStep = 1;
+        const totalSteps = 6;
+
+        // --- VALIDATION FUNCTIONS ---
+
+        function validateName(input, errorId) {
+            const errorElement = document.getElementById(errorId);
+            const countElement = document.getElementById(input.id + 'Count');
+            const value = input.value;
+
+            // Pattern check (letters and spaces only)
+            const namePattern = /^[A-Za-z\s]*$/;
+
+            countElement.textContent = `${value.length}/40 characters`;
+
+            if (!namePattern.test(value)) {
+                errorElement.textContent = "Only letters and spaces allowed";
+                errorElement.classList.remove('hidden');
+                input.classList.add('border-red-600');
+            } else if (value.length > 40) {
+                errorElement.textContent = "Maximum 40 characters allowed";
+                errorElement.classList.remove('hidden');
+                input.classList.add('border-red-600');
+            } else {
+                errorElement.classList.add('hidden');
+                input.classList.remove('border-red-600');
+            }
+        }
+
+        function validateEmail(input) {
+            const errorElement = document.getElementById('emailError');
+            const value = input.value.toLowerCase();
+            const gmailPattern = /^[a-z0-9._%+-]+@gmail\.com$/;
+
+            if (value && !gmailPattern.test(value)) {
+                errorElement.textContent = "Please enter a valid @gmail.com address";
+                errorElement.classList.remove('hidden');
+                input.classList.add('border-red-600');
+            } else {
+                errorElement.classList.add('hidden');
+                input.classList.remove('border-red-600');
+            }
+        }
+
+        function updatePhoneValidation() {
+            const select = document.getElementById('countryCode');
+            const input = document.getElementById('phone');
+            const selectedOption = select.options[select.selectedIndex];
+            const length = selectedOption.getAttribute('data-length');
+            const format = selectedOption.getAttribute('data-format');
+
+            document.getElementById('phoneFormat').textContent = `Format: ${format} (${length} digits)`;
+            validatePhone(input);
+        }
+
+        function validatePhone(input) {
+            const select = document.getElementById('countryCode');
+            const errorElement = document.getElementById('phoneError');
+            const selectedOption = select.options[select.selectedIndex];
+            const requiredLength = parseInt(selectedOption.getAttribute('data-length'));
+
+            // Remove non-numeric characters
+            let value = input.value.replace(/\D/g, '');
+            input.value = value; // Keep it clean
+
+            if (value && value.length !== requiredLength) {
+                errorElement.textContent = `Phone number must be exactly ${requiredLength} digits for this country`;
+                errorElement.classList.remove('hidden');
+                input.classList.add('border-red-600');
+            } else {
+                errorElement.classList.add('hidden');
+                input.classList.remove('border-red-600');
+            }
+        }
+
+        // --- COUNTRY POPULATION ---
+        const countries = [
+            { name: "United States", code: "+1", length: 10, format: "(XXX) XXX-XXXX", flag: "🇺🇸" },
+            { name: "United Kingdom", code: "+44", length: 10, format: "XXXX XXX XXX", flag: "🇬🇧" },
+            { name: "Canada", code: "+1", length: 10, format: "(XXX) XXX-XXXX", flag: "🇨🇦" },
+            { name: "Australia", code: "+61", length: 9, format: "XXX XXX XXX", flag: "🇦🇺" },
+            { name: "Pakistan", code: "+92", length: 10, format: "XXX XXXXXXX", flag: "🇵🇰" },
+            { name: "India", code: "+91", length: 10, format: "XXXXX XXXXX", flag: "🇮🇳" },
+            { name: "Germany", code: "+49", length: 10, format: "XXX XXXXXXX", flag: "🇩🇪" },
+            { name: "France", code: "+33", length: 9, format: "X XX XX XX XX", flag: "🇫🇷" },
+            { name: "United Arab Emirates", code: "+971", length: 9, format: "XX XXX XXXX", flag: "🇦🇪" },
+            { name: "Saudi Arabia", code: "+966", length: 9, format: "XX XXX XXXX", flag: "🇸🇦" },
+            // Adding a few more for variety, but the logic is there to add all
+            { name: "Afghanistan", code: "+93", length: 9, format: "XX XXX XXXX", flag: "🇦🇫" },
+            { name: "Albania", code: "+355", length: 9, format: "XXX XXX XXX", flag: "🇦🇱" },
+            { name: "Algeria", code: "+213", length: 9, format: "X XX XX XX XX", flag: "🇩🇿" },
+            { name: "Andorra", code: "+376", length: 6, format: "XXX XXX", flag: "🇦🇩" },
+            { name: "Angola", code: "+244", length: 9, format: "XXX XXX XXX", flag: "🇦🇴" },
+            { name: "Argentina", code: "+54", length: 10, format: "XX XXXX XXXX", flag: "🇦🇷" },
+            { name: "Austria", code: "+43", length: 10, format: "XXXX XXXXXX", flag: "🇦🇹" },
+            { name: "Bangladesh", code: "+880", length: 10, format: "XXXX XXXXXX", flag: "🇧🇩" },
+            { name: "Belgium", code: "+32", length: 9, format: "XXX XX XX XX", flag: "🇧🇪" },
+            { name: "Brazil", code: "+55", length: 11, format: "XX XXXXX XXXX", flag: "🇧🇷" },
+            { name: "China", code: "+86", length: 11, format: "XXX XXXX XXXX", flag: "🇨🇳" },
+            { name: "Egypt", code: "+20", length: 10, format: "XXX XXX XXXX", flag: "🇪🇬" },
+            { name: "Italy", code: "+39", length: 10, format: "XXX XXXXXXX", flag: "🇮🇹" },
+            { name: "Japan", code: "+81", length: 10, format: "XX XXXX XXXX", flag: "🇯🇵" },
+            { name: "Mexico", code: "+52", length: 10, format: "XX XXXX XXXX", flag: "🇲🇽" },
+            { name: "Netherlands", code: "+31", length: 9, format: "X XX XX XX XX", flag: "🇳🇱" },
+            { name: "New Zealand", code: "+64", length: 9, format: "XXX XXX XXX", flag: "🇳🇿" },
+            { name: "Nigeria", code: "+234", length: 10, format: "XXX XXX XXXX", flag: "🇳🇬" },
+            { name: "Norway", code: "+47", length: 8, format: "XXX XX XXX", flag: "🇳🇴" },
+            { name: "Russia", code: "+7", length: 10, format: "XXX XXX XXXX", flag: "🇷🇺" },
+            { name: "South Africa", code: "+27", length: 9, format: "XX XXX XXXX", flag: "🇿🇦" },
+            { name: "South Korea", code: "+82", length: 10, format: "XX XXXX XXXX", flag: "🇰🇷" },
+            { name: "Spain", code: "+34", length: 9, format: "XXX XXX XXX", flag: "🇪🇸" },
+            { name: "Sweden", code: "+46", length: 9, format: "XX XXX XX XX", flag: "🇸🇪" },
+            { name: "Switzerland", code: "+41", length: 9, format: "XX XXX XX XX", flag: "🇨🇭" },
+            { name: "Turkey", code: "+90", length: 10, format: "XXX XXX XXXX", flag: "🇹🇷" }
+        ];
+
+        function populateCountries() {
+            const select = document.getElementById('countryCode');
+            select.innerHTML = ''; // Clear hardcoded ones
+
+            countries.sort((a, b) => a.name.localeCompare(b.name)).forEach(country => {
+                const option = document.createElement('option');
+                option.value = country.code;
+                option.setAttribute('data-length', country.length);
+                option.setAttribute('data-format', country.format);
+                option.textContent = `${country.flag} ${country.code} (${country.name})`;
+                select.appendChild(option);
+            });
+
+            // Set default to US
+            select.value = "+1";
+            updatePhoneValidation();
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            populateCountries();
+        });
+
+        // Close modal function
+        function closeModal() {
+            if (confirm('Are you sure you want to close this consultation form?')) {
+                document.body.innerHTML = '<div class="min-h-screen flex items-center justify-center bg-gray-900"><h1 class="text-white text-2xl">Form Closed</h1></div>';
+            }
+        }
+
+        // Update progress bar
+        function updateProgress() {
+            const progress = (currentStep / totalSteps) * 100;
+            const progressBar = document.querySelector('.h-full.bg-gradient-to-r');
+            const progressText = document.querySelectorAll('.text-green-600')[0];
+
+            progressBar.style.width = progress + '%';
+            progressText.textContent = Math.round(progress) + '% Complete';
+        }
+
+        // Next step function
+        function nextStep() {
+            // Validate current step
+            if (currentStep === 1) {
+                const firstName = document.getElementById('firstName').value;
+                const lastName = document.getElementById('lastName').value;
+                const email = document.getElementById('email').value;
+                const phone = document.getElementById('phone').value;
+
+                if (!firstName || !lastName || !email || !phone) {
+                    alert('Please fill in all required fields');
+                    return;
+                }
+            }
+
+            if (currentStep < totalSteps) {
+                // Hide current step
+                document.getElementById('step' + currentStep).classList.add('hidden');
+
+                // Show next step
+                currentStep++;
+                document.getElementById('step' + currentStep).classList.remove('hidden');
+
+                // Update progress
+                updateProgress();
+
+                // Calculate BMI if on step 2
+                if (currentStep === 2) {
+                    calculateBMI();
+                }
+
+                // Copy BMI data to final step if on step 5
+                if (currentStep === 5) {
+                    const bmiValue = document.getElementById('bmiValue').textContent;
+                    const bmiStatus = document.getElementById('bmiStatus').textContent;
+                    const bmiStatusClass = document.getElementById('bmiStatus').className;
+
+                    document.getElementById('finalBmiValue').textContent = bmiValue;
+                    document.getElementById('finalBmiStatus').textContent = bmiStatus;
+
+                    // Update color based on BMI status
+                    const finalBmiValue = document.getElementById('finalBmiValue');
+                    const finalBmiStatus = document.getElementById('finalBmiStatus');
+
+                    if (bmiStatusClass.includes('blue')) {
+                        finalBmiValue.className = 'text-5xl font-bold text-blue-600 mb-1';
+                        finalBmiStatus.className = 'text-sm font-semibold text-blue-600';
+                    } else if (bmiStatusClass.includes('green')) {
+                        finalBmiValue.className = 'text-5xl font-bold text-green-600 mb-1';
+                        finalBmiStatus.className = 'text-sm font-semibold text-green-600';
+                    } else if (bmiStatusClass.includes('orange')) {
+                        finalBmiValue.className = 'text-5xl font-bold text-orange-600 mb-1';
+                        finalBmiStatus.className = 'text-sm font-semibold text-orange-600';
+                    } else {
+                        finalBmiValue.className = 'text-5xl font-bold text-red-600 mb-1';
+                        finalBmiStatus.className = 'text-sm font-semibold text-red-600';
+                    }
+                }
+            }
+        }
+
+        // Previous step function
+        function previousStep() {
+            if (currentStep > 1) {
+                // Hide current step
+                document.getElementById('step' + currentStep).classList.add('hidden');
+
+                // Show previous step
+                currentStep--;
+                document.getElementById('step' + currentStep).classList.remove('hidden');
+
+                // Update progress
+                updateProgress();
+            }
+        }
+
+        // Submit form function
+        async function submitForm() {
+            // Show loading state on button (optional but recommended)
+            const submitBtn = document.querySelector('button[onclick="submitForm()"]');
+            const originalBtnContent = submitBtn.innerHTML;
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = `
+                <svg class="animate-spin h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                    <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                    <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                </svg>
+                Processing...
+            `;
+
+            try {
+                // Gather all form data
+                const formData = {
+                    firstName: document.getElementById('firstName').value,
+                    lastName: document.getElementById('lastName').value,
+                    email: document.getElementById('email').value,
+                    phone: document.getElementById('phone').value,
+                    countryCode: document.getElementById('countryCode').value,
+                    height: document.getElementById('height').value,
+                    weight: document.getElementById('weight').value,
+                    heightUnit: document.querySelector('input[name="heightUnit"]:checked')?.value || 'ft/in',
+                    weightUnit: document.querySelector('input[name="weightUnit"]:checked')?.value || 'lbs',
+                    bmi: document.getElementById('bmiValue').textContent,
+                    bmiStatus: document.getElementById('bmiStatus').textContent,
+                    primaryGoals: Array.from(document.querySelectorAll('input[name="primaryGoals"]:checked')).map(cb => cb.value),
+                    healthConcerns: Array.from(document.querySelectorAll('input[name="healthConcerns"]:checked')).map(cb => cb.value),
+                    weightLossAttempts: document.querySelector('input[name="weightLossAttempts"]:checked')?.value || 'neverTried',
+                    consultationType: document.querySelector('input[name="consultationType"]:checked')?.value || 'virtual',
+                    preferredTime: document.querySelector('input[name="preferredTime"]:checked')?.value || 'morning',
+                    submittedAt: firebase.firestore.FieldValue.serverTimestamp()
+                };
+
+                console.log('Submitting to Firebase...', formData);
+
+                // Save to Firestore "forms" collection
+
+                const docRef = await db.collection("forms").add(formData);
+                console.log('Successfully saved to Firebase with ID:', docRef.id);
+
+                // NEW: Call the Automation API
+                // We wrap this in a separate try/catch so that if the API fails (e.g. running locally without the backend),
+                // the user still sees the success screen since their data WAS saved to Firebase.
+                try {
+                    const apiResponse = await fetch('/api/process-emails', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({
+                            formId: docRef.id,
+                            formData: formData,
+                            triggerType: 'initial'
+                        })
+                    });
+
+                    if (!apiResponse.ok) {
+                        console.warn(`Automation API warning: Server responded with status ${apiResponse.status}`);
+                    } else {
+                        console.log('Automation API called successfully');
+                    }
+                } catch (apiError) {
+                    console.error("Automation API Error (Non-fatal):", apiError);
+                    // We don't block the user flow here because the primary data was saved.
+                }
+
+                // Navigate to thank you page (step 6)
+                document.getElementById('step5').classList.add('hidden');
+                currentStep = 6;
+                document.getElementById('step6').classList.remove('hidden');
+                updateProgress();
+
+            } catch (error) {
+                console.error("Error submitting form: ", error);
+
+                // Show a more specific error message if possible
+                let errorMessage = "There was an error submitting your form. Please check your internet connection and try again.";
+                if (error.message) {
+                    errorMessage += "\nError details: " + error.message;
+                }
+                alert(errorMessage);
+
+                // Reset button state
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = originalBtnContent;
+            }
+        }
+
+        // Calculate BMI
+        function calculateBMI() {
+            const heightValue = document.getElementById('height').value;
+            const weight = parseFloat(document.getElementById('weight').value);
+            const heightUnitChecked = document.querySelector('input[name="heightUnit"]:checked');
+            const weightUnitChecked = document.querySelector('input[name="weightUnit"]:checked');
+            const bmiDisplay = document.getElementById('bmiDisplay');
+
+            // Hide BMI display if inputs are empty or units not selected
+            if (!heightValue || !weight || !heightUnitChecked || !weightUnitChecked) {
+                bmiDisplay.classList.add('hidden');
+                return;
+            }
+
+            const heightUnit = heightUnitChecked.value;
+            const weightUnit = weightUnitChecked.value;
+
+            let heightInMeters;
+            let weightInKg;
+
+            // Convert weight to kg
+            if (weightUnit === 'lbs') {
+                weightInKg = weight * 0.453592;
+            } else {
+                weightInKg = weight;
+            }
+
+            // Convert height to meters
+            if (heightUnit === 'ft/in') {
+                // Parse feet and inches (e.g., "5'10")
+                const parts = heightValue.split("'");
+                const feet = parseFloat(parts[0]) || 0;
+                const inches = parseFloat(parts[1]) || 0;
+                heightInMeters = ((feet * 12) + inches) * 0.0254;
+            } else {
+                // Height in cm
+                heightInMeters = parseFloat(heightValue) / 100;
+            }
+
+            // Calculate BMI
+            if (heightInMeters > 0 && weightInKg > 0) {
+                const bmi = weightInKg / (heightInMeters * heightInMeters);
+                const bmiRounded = bmi.toFixed(1); // One decimal place for accuracy
+
+                // Show BMI display
+                bmiDisplay.classList.remove('hidden');
+
+                // Update BMI display
+                document.getElementById('bmiValue').textContent = bmiRounded;
+
+                // Update BMI status with accurate color
+                const bmiStatusElement = document.getElementById('bmiStatus');
+                const bmiValueElement = document.getElementById('bmiValue');
+
+                if (bmi < 18.5) {
+                    bmiStatusElement.textContent = 'Underweight';
+                    bmiStatusElement.className = 'text-sm font-semibold text-blue-600';
+                    bmiValueElement.className = 'text-5xl font-bold text-blue-600 mb-1';
+                } else if (bmi >= 18.5 && bmi < 25) {
+                    bmiStatusElement.textContent = 'Normal weight';
+                    bmiStatusElement.className = 'text-sm font-semibold text-green-600';
+                    bmiValueElement.className = 'text-5xl font-bold text-green-600 mb-1';
+                } else if (bmi >= 25 && bmi < 30) {
+                    bmiStatusElement.textContent = 'Overweight';
+                    bmiStatusElement.className = 'text-sm font-semibold text-orange-600';
+                    bmiValueElement.className = 'text-5xl font-bold text-orange-600 mb-1';
+                } else {
+                    bmiStatusElement.textContent = 'Obese';
+                    bmiStatusElement.className = 'text-sm font-semibold text-red-600';
+                    bmiValueElement.className = 'text-5xl font-bold text-red-600 mb-1';
+                }
+            } else {
+                // Hide if invalid values
+                bmiDisplay.classList.add('hidden');
+            }
+        }
+
+        // Add event listeners for unit changes
+        document.addEventListener('DOMContentLoaded', function () {
+            const heightUnitInputs = document.querySelectorAll('input[name="heightUnit"]');
+            const weightUnitInputs = document.querySelectorAll('input[name="weightUnit"]');
+
+            heightUnitInputs.forEach(input => {
+                input.addEventListener('change', calculateBMI);
+            });
+
+            weightUnitInputs.forEach(input => {
+                input.addEventListener('change', calculateBMI);
+            });
+
+            // Add input animations
+            const inputs = document.querySelectorAll('input[type="text"], input[type="email"], input[type="tel"], input[type="number"]');
+            inputs.forEach(input => {
+                input.addEventListener('focus', function () {
+                    this.classList.add('ring-2', 'ring-red-500');
+                });
+
+                input.addEventListener('blur', function () {
+                    this.classList.remove('ring-2', 'ring-red-500');
+                });
+            });
+        });
+    </script>
+
+</body>
+
+</html>
