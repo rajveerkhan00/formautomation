@@ -115,8 +115,14 @@ export async function GET(request: Request) {
         const formsToProcess: any[] = [];
         querySnapshot.forEach((formDoc) => {
             const data = formDoc.data();
-            // Check if processed
-            if (!data.userEmailStatus || !data.adminEmailStatus) {
+            // Check if processed - Treat 'Pending'/'pending' as unprocessed
+            const uStatus = data.userEmailStatus;
+            const aStatus = data.adminEmailStatus;
+
+            const needsUserEmail = !uStatus || uStatus === 'Pending' || uStatus === 'pending' || uStatus === 'retry';
+            const needsAdminEmail = !aStatus || aStatus === 'Pending' || aStatus === 'pending' || aStatus === 'retry';
+
+            if (needsUserEmail || needsAdminEmail) {
                 formsToProcess.push({ id: formDoc.id, ...data });
             }
         });
@@ -128,8 +134,9 @@ export async function GET(request: Request) {
         for (const form of formsToProcess) {
             const formId = form.id;
 
-            // Send User Email if missing
-            if (!form.userEmailStatus && form.email) {
+            // Send User Email if needed
+            const uStatus = form.userEmailStatus;
+            if ((!uStatus || uStatus === 'Pending' || uStatus === 'pending' || uStatus === 'retry') && form.email) {
                 // Mark as sending to prevent double-send on next cron if this takes long
                 await updateDoc(doc(db, "forms", formId), { userEmailStatus: 'sending' });
 
@@ -156,8 +163,9 @@ export async function GET(request: Request) {
                 }
             }
 
-            // Send Admin Email if missing
-            if (!form.adminEmailStatus) {
+            // Send Admin Email if needed
+            const aStatus = form.adminEmailStatus;
+            if (!aStatus || aStatus === 'Pending' || aStatus === 'pending' || aStatus === 'retry') {
                 // Mark as sending
                 await updateDoc(doc(db, "forms", formId), { adminEmailStatus: 'sending' });
 
